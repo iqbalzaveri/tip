@@ -58,8 +58,7 @@ public class EditDistanceMin {
 				
 			}
 		}
-		
-		printDistSlightlyWrong(str1, str2, dp);
+
 		return dp[dp.length-1][dp[0].length-1];
 	}
 
@@ -82,53 +81,17 @@ public class EditDistanceMin {
 				);
 	}
 	
-	private static int min(int x, int y, int z) {
-		if(x < y && x < z) {
-			return x;
-		}
-		if(y < x && y < z) {
-			return y;
-		}
-		return z;
-	}
+  static int min(int x, int y, int z) {
+      //Math.min(Math.min(x,y),z);
+      if(x <= y && x <= z) {
+        return x;
+      }
+      if(y <= x && y <= z) {
+          return y;
+      }
+      return z;
+    }
 	
-	private static void printDistSlightlyWrong(String left, String right, int array[][]) {
-        int i = 1;
-        int j = 1;
-        System.out.println(left);
-        System.out.println(right);
-        int lLength = left.length();
-        int rLength = right.length();
-        while (i != lLength || j < rLength) {
-            if (j >= rLength) {
-                System.out.println(i + ": delete " + left.charAt(i-1));
-                i++;
-                continue;
-            }
-            if (i >= lLength) {
-                System.out.println(j + ": add " + right.charAt(j-1));
-                j++;
-                continue;
-            }
-            if (array[i][j] == array[i][j - 1] + 1) {
-                System.out.println(i + ": add " + right.charAt(j-1));
-                j++;
-            } else if (array[i][j] == array[i - 1][j] + 1) {
-                System.out.println(i + ": delete " + left.charAt(i-1));
-                i++;
-            }
-            else if (array[i][j] != array[i - 1][j - 1]) {
-                System.out.println(i + ": replace " + left.charAt(i-1) + " with " + right.charAt(j-1));
-                i++;
-                j++;
-            }
-            else {
-                //System.out.println(i + ": move (" + right.charAt(j-1) + ")");
-                i++;
-                j++;
-            }
-        }
-        //return array[0][0];
-	}
+	
 	
 }
