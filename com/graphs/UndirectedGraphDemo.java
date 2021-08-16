@@ -92,7 +92,7 @@ class UndirectedGraph {
           if(list != null) {
             for(Integer c : list) {
               if(c != null && !isVisited[c]) {
-                queue.offer(new QueueNode(c, dist+1);
+                queue.offer(new QueueNode(c, dist+1));
                 isVisited[c] = true; //mark it as visited
               }
             }

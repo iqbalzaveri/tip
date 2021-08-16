@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Interval {
   int start; //epoch seconds
   int end;
@@ -5,8 +8,8 @@ class Interval {
 } 
 
 class MergeOverlappingIntervals {
-  p s v main(String args[]) {
-    Interval inv1 = new Interval(2,5);
+  public static void main(String args[]) {
+   /* Interval inv1 = new Interval(2,5);
     Interval inv2 = new Interval(2,3);
     Interval inv3 = new Interval(6,8);
     Interval inv4 = new Interval(7,10);
@@ -16,16 +19,20 @@ class MergeOverlappingIntervals {
     2,5
     6,10
     */
-    
+    /*
     List<Interval> intervals = new ArrayList<Interval>();
     intervals.add(inv1); //add others
     
     List<Interval> mergedIntervals = mergeIntervals(intervals);
-    
+    */
+
   }
-  
+}
+
+  /*
   static List<Interval> mergeIntervals(List<Interval> intervals) {
     //sort the interval
+
     Collections.sort(intervals, (a, b) -> a.start - b.start);
     List<Interval> resultIntervals = new ArrayList<Interval>();
     
@@ -45,7 +52,8 @@ class MergeOverlappingIntervals {
     
     return resultIntervals;
   
-  
+
   }
 
 }
+*/
