@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class QuickSelect {
+public class QuickSort {
     public static void main(String[] args) {
 
         int[] ary = {5,1,6,8,3,7,2};
