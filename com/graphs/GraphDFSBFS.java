@@ -76,6 +76,45 @@ public class GraphDFSBFS {
                 }
             }
         }
+
+        boolean isCycle() {
+            boolean[] isVisited = new boolean[V];
+            boolean[] isAlive = new boolean[V];
+
+            for(int i=0; i< adjList.length; i++) { //for each node in the Graph
+                if(!isVisited[i]) {
+                    if(dfsCycle(i, isVisited, isAlive)) {
+                        return true;
+                    }
+                }
+            }
+            return false; // no cycle found
+        }
+
+
+
+
+        boolean dfsCycle(Integer v, boolean[] isVisited, boolean[] isAlive) {
+            isVisited[v]= true;
+            isAlive[v]= true;
+
+            LinkedList<Integer> list = adjList[v]; //get neighbors of v or all vertices connected to v
+            if (list != null) {
+                for (Integer c : list) {
+                    if (c != null && !isVisited[c]) { // not visited
+                        if(dfsCycle(c, isVisited, isAlive)) {
+                            return true;
+                        }
+                    } if (c != null && isVisited[c] && isAlive[c]) { // is is Visited & Alive also which means there is a cycle
+                        return true;  //if cycle just simply return
+                    }
+                }
+            }
+            isAlive[v] = false; //backtrack because of the path
+
+            return false; //no cycle found so return false.
+        }
+
     } // end of class Graph
 
 
@@ -91,16 +130,23 @@ public class GraphDFSBFS {
 
         graph.addEdge(2,3);
         graph.addEdge(2,4);
+        graph.addEdge(2,0);
 
         graph.addEdge(3,null);
         graph.addEdge(4,null);
 
         graph.addEdge(5,2);
 
+        System.out.println("BFS:");
         graph.printGraphUsingBFS();
+
         System.out.println();
 
+        System.out.println("DFS:");
         graph.printGraphUsingDFS();
+
+        System.out.println();
+        System.out.println("is Cycle: "  + graph.isCycle());
 
     }
 }
