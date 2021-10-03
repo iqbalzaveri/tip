@@ -170,10 +170,10 @@ class UndirectedGraph {
   public void printNumberOfConnectComponents() {
     boolean[] isVisited = new boolean[adjList.length];
     int count = 0;
-    for(int i=0; i<adjList.length; i++) {
+    for(int i=0; i<adjList.length; i++) {  //for each node/vertex in the graph
       if(!isVisited[i]) {
         dfs(i, isVisited);
-        count++;
+        count++; //count number of connected components
       }
     }
 
