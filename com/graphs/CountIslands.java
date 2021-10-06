@@ -45,19 +45,35 @@ public class CountIslands {
 
   private static void dfs(int[][] matrix, int row, int col) {
     matrix[row][col] = -1; //mark as visited
-    for(int dir = 0; dir<directions.length; dir++) { // Get all neighbors
-      int rowDirection = row + directions[dir][0];
-      int colDirection = col + directions[dir][1];
+    for(int i = 0; i<directions.length; i++) { // Get all neighbors
+      int newRow = row + directions[i][0];  //neigbhor row
+      int newCol = col + directions[i][1]; //neigbhor col
       //add isSafe
-      if(isValid(matrix, rowDirection, colDirection) && matrix[rowDirection][colDirection] == 1) {  //not visited and it is not a 0
-        dfs(matrix, rowDirection, colDirection);
+      if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1) {  //not visited and it is not a 0
+        dfs(matrix, newRow, newCol);
       }
     }
     /*
     either use the above direction trick OR
-    dfs(matrix, row+1, col);  //up
-    dfs(matrix, row-1, col);  //down
-    dfs(matrix, row-1, col-1);  //up left
+
+    int newRow = row + 1;
+    int newCol = col; //up
+    if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1)
+          dfs(matrix, newRow, newCol);
+    }
+     newRow = row - 1;
+     newCol = col; //down
+    if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1)
+          dfs(matrix, newRow, newCol);
+    }
+
+     newRow = row -1 ;
+     newCol = col -1; //up left
+    if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1)
+          dfs(matrix, newRow, newCol);
+    }
+
+
     ... total 8 statements
 
 
