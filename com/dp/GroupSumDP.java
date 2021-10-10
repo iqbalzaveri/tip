@@ -1,5 +1,11 @@
 public class GroupSumDP {
 
+    public static void main(String[] args) {
+        int[] ary = {2, 4, 1, 8};
+        boolean res = groupSumDP(ary, 5);
+        System.out.println("======");
+        System.out.println("Result: " + res);
+    }
     public static boolean groupSum(int[] ary, int target) {
         return groupSum(ary, 0, target);
     }
@@ -40,20 +46,26 @@ public class GroupSumDP {
             dp[i][0] = true;           //fill all first columns
         }
 
-        for(int t=1; t< dp[0].length; t++) {
-            dp[0][t] = false;            //fill all first row
-        }
+//        for(int t=1; t< dp[0].length; t++) {   //not needed because in Java boolean arrays are by default initialized to False
+//            dp[0][t] = false;            //fill all first row
+//        }
 
-        for(int i=1; i<dp.length; i++) {
-            for(int t=1; t<dp[0].length; t++) {
-                dp[i][t] = dp[i+1][t-ary[i]] || dp[i+1][t];  //Add addtional checks ..To be completed
+            for(int i= dp.length-2; i>=0; i--) {
+                for(int t=1; t<=target; t++) {  // for(int t=1; t<dp[0].length; t++)
+                    if(t-ary[i] >= 0) {
+                        dp[i][t] = dp[i+1][t-ary[i]] || dp[i+1][t];
+                    } else {
+                        dp[i][t] = dp[i+1][t];
+                    }
+
+                }
             }
-        }
+
 
         //debug dp table
         for(int row=0; row<dp.length; row++) {
             for(int col=0; col<dp[0].length; col++) {
-                System.out.print(dp[row][col] + " ");
+                System.out.print(dp[row][col] ? "T " : "F ");
             }
             System.out.println();
         }
