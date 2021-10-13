@@ -9,6 +9,7 @@ public class CountStarirsNumOfWays {
 
     }
 
+        // Can take 1 or steps
     private static int countNoOfWays(int stairs) {
 
         //base case
