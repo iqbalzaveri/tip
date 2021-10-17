@@ -25,7 +25,19 @@ public class MinEditDistanceLenToZero {
         if(s2 == 0) {
             return s1;
         }
+/*
+be
+bed
 
+be@  --insertion
+bed
+
+be
+be
+
+
+
+ */
         // no-op  -- 2
         if(str1.charAt(s1-1) == str2.charAt(s2-1)) {  // chars are equal
             return minDist(str1, str2, s1-1, s2-1);
