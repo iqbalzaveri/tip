@@ -110,8 +110,10 @@ public class BoggleSolver {
     StringBuilder strBuilder = new StringBuilder();
     for(int r=0; r < board.length; r++) {
       for(int c=0; c < board[0].length; c++) {
-        //dfs(r, c, board, strBuilder, set, isVisited);
-        dfsTrie(r, c, board, strBuilder, trie, isVisited);
+        if(!isVisited[r][c]) {
+          dfs(r, c, board, strBuilder, set, isVisited);
+          //dfsTrie(r, c, board, strBuilder, trie, isVisited);
+        }
       }
     }
   }
