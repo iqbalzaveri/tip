@@ -30,11 +30,11 @@ public class CountIslands {
   static int countIslands(int[][] matrix) {
     int count = 0;
 
-    for(int row = 0; row < matrix.length; row++) {
+    for(int row = 0; row < matrix.length; row++) { //for each node/vertex in graph
       for(int col = 0; col < matrix[0].length; col++) {
-        if(matrix[row][col] == 1) { //not visited
+        if(matrix[row][col] == 1) { //not visited (1 also mean a vertex)
           dfs(matrix, row, col);
-          count++;
+          count++; //count number of connected components
         }
       }
     }
@@ -45,16 +45,47 @@ public class CountIslands {
 
   private static void dfs(int[][] matrix, int row, int col) {
     matrix[row][col] = -1; //mark as visited
-    for(int dir = 0; dir<directions.length; dir++) {
-      int rowDirection = row + directions[dir][0];
-      int colDirection = col + directions[dir][1];
+    for(int i = 0; i<directions.length; i++) { // Get all neighbors
+      int newRow = row + directions[i][0];  //neigbhor row
+      int newCol = col + directions[i][1]; //neigbhor col
       //add isSafe
-      if(matrix[rowDirection][colDirection] == 1) {  //not visited and it is not a 0
-        dfs(matrix, rowDirection, colDirection);
+      if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1) {  //not visited and it is not a 0
+        dfs(matrix, newRow, newCol);
       }
     }
+    /*
+    either use the above direction trick OR
+
+    int newRow = row + 1;
+    int newCol = col; //up
+    if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1)
+          dfs(matrix, newRow, newCol);
+    }
+     newRow = row - 1;
+     newCol = col; //down
+    if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1)
+          dfs(matrix, newRow, newCol);
+    }
+
+     newRow = row -1 ;
+     newCol = col -1; //up left
+    if(isValid(matrix, newRow, newCol) && matrix[newRow][newCol] == 1)
+          dfs(matrix, newRow, newCol);
+    }
+
+
+    ... total 8 statements
+
+
+     */
 
   }
 
+  static boolean isValid(int[][] matrix, int r, int c) {
+    if(r < 0 || r >= matrix.length || c < 0 || c >= matrix[0].length) {
+      return false;
+    }
+    return true;
+  }
 
 }
